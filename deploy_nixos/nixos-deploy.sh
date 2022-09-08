@@ -127,7 +127,7 @@ targetHostCmd "$outPath/bin/switch-to-configuration" "$action"
 
 # Cleanup previous generations
 log "collecting old nix derivations"
-# Deliberately not quoting $deleteOlderThan so the user can configure something like "1 2 3" 
+# Deliberately not quoting $deleteOlderThan so the user can configure something like "1 2 3"
 # to keep generations with those numbers
 targetHostCmd "nix-env" "--profile" "$profile" "--delete-generations" $deleteOlderThan
 targetHostCmd "nix-store" "--gc"
