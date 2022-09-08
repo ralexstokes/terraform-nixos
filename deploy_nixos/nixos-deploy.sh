@@ -14,6 +14,8 @@ profile=/nix/var/nix/profiles/system
 sshOpts=(
   -o "ControlMaster=auto"
   -o "ControlPersist=60"
+  # NOTE: without this, get an error that the socket name is too long...
+  -o "ControlPath=~/.ssh/%h"
   # Avoid issues with IP re-use. This disable TOFU security.
   -o "StrictHostKeyChecking=no"
   -o "UserKnownHostsFile=/dev/null"
@@ -21,7 +23,7 @@ sshOpts=(
   # interactive authentication is not possible
   -o "BatchMode=yes"
   # verbose output for easier debugging
-  -v
+  # -v
 )
 
 ###  Argument parsing ###
