@@ -195,7 +195,7 @@ resource "null_resource" "deploy_nixos" {
       "${var.target_user}@${var.target_host}",
       var.target_port,
       local.build_on_target,
-      local.ssh_private_key == "" ? "-" : local.ssh_private_key,
+      local.ssh_private_key == "" ? "-" : sensitive(local.ssh_private_key),
       "switch",
       var.delete_older_than,
       ],
@@ -211,4 +211,3 @@ output "id" {
   description = "random ID that changes on every nixos deployment"
   value       = null_resource.deploy_nixos.id
 }
-
